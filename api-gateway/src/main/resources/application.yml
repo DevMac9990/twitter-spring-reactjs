@@ -1,8 +1,5 @@
 server:
     port: 8000
-file:
-    savePath: /Users/atom/workspace/zhu-groups/zhu-java-groups/twitter-club-server/upFiles
-    fileHost: http://localhost:8080
 spring:
     application:
         name: api-gateway

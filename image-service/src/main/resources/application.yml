@@ -8,8 +8,9 @@ spring:
         base-url: http://${ZIPKIN_HOST:localhost}:9411
 
 file:
-    savePath: /Users/atom/workspace/zhu-groups/zhu-java-groups/twitter-club-server/upFiles
-    fileHost: http://localhost:8000/upRes
+    savePath: /home/ubuntu/upFiles
+#    savePath: /Users/atom/workspace/zhu-groups/zhu-java-groups/twitter-club-server/upFiles
+    fileHost: http://18.140.196.115:8000/upRes
 
 amazon:
     s3:

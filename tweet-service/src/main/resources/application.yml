@@ -1,8 +1,9 @@
 server:
     port: 8002
 file:
-    savePath: /Users/atom/workspace/zhu-groups/zhu-java-groups/twitter-club-server/upFiles
-    fileHost: http://localhost:8000/upRes
+    savePath: /home/ubuntu/upFiles
+#    savePath: /Users/atom/workspace/zhu-groups/zhu-java-groups/twitter-club-server/upFiles
+    fileHost: http://18.140.196.115:8000/upRes
 spring:
     application:
         name: tweet-service
