@@ -6,6 +6,7 @@ import com.gmail.merikbest2015.enums.ReplyType;
 import com.gmail.merikbest2015.enums.TweetType;
 import com.gmail.merikbest2015.exception.ApiRequestException;
 import com.gmail.merikbest2015.client.ImageClient;
+import com.gmail.merikbest2015.file.ImageService;
 import com.gmail.merikbest2015.model.Tweet;
 import com.gmail.merikbest2015.model.TweetImage;
 import com.gmail.merikbest2015.model.User;
@@ -18,6 +19,7 @@ import com.gmail.merikbest2015.service.util.TweetServiceHelper;
 import com.gmail.merikbest2015.service.util.TweetValidationHelper;
 import com.gmail.merikbest2015.util.AuthUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -132,10 +134,12 @@ public class TweetServiceImpl implements TweetService {
         return tweetRepository.getFollowersTweets(authUserId, pageable);
     }
 
+    @Autowired
+    ImageService imageService;
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     public TweetImage uploadTweetImage(MultipartFile file) {
-        String imageSrc = imageClient.uploadImage(file);
+        String imageSrc = imageService.uploadImage(file);
         return tweetImageRepository.save(new TweetImage(imageSrc));
     }
 

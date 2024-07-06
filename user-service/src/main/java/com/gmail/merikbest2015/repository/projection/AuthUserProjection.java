@@ -14,9 +14,8 @@ public interface AuthUserProjection {
     String getAbout();
     String getWebsite();
     String getCountryCode();
-    String getCountry();
-    String getPhoneCode();
     Long getPhone();
+    String getCountry();
     String getGender();
     String getLanguage();
     String getBirthday();

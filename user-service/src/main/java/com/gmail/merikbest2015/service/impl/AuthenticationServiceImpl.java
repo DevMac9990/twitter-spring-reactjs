@@ -133,7 +133,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private Long getUserId() {
         RequestAttributes attribs = RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) attribs).getRequest();
-        return Long.parseLong(request.getHeader(AUTH_USER_ID_HEADER));
+        try{
+            if(request.getHeader(AUTH_USER_ID_HEADER) != null){
+                return Long.parseLong(request.getHeader(AUTH_USER_ID_HEADER));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1L;
     }
 
     private void checkMatchPasswords(String password, String password2) {

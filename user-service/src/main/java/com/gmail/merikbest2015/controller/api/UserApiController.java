@@ -20,6 +20,11 @@ public class UserApiController {
 
     private final UserClientService userService;
 
+    @GetMapping("test")
+    public UserResponse test() {
+        return userService.getUserResponseById(1L);
+    }
+
     @GetMapping(USER_ID)
     public UserResponse getUserById(@PathVariable("userId") Long userId) {
         return userService.getUserResponseById(userId);

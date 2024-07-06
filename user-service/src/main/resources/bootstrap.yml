@@ -1,6 +1,9 @@
 spring:
+    profiles:
+        active: test
     application:
         name: user-service
     cloud:
         config:
+            profile: dev
             uri: http://${CONFIG_SERVER_HOST:localhost}:8888/

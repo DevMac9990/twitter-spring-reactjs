@@ -17,9 +17,8 @@ public class AuthUserResponse {
     private String about;
     private String website;
     private String countryCode;
-    private String country;
-    private String phoneCode;
     private Long phone;
+    private String country;
     private String gender;
     private String language;
     private String birthday;

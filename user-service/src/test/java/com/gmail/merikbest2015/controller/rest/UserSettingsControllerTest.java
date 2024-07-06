@@ -93,10 +93,9 @@ public class UserSettingsControllerTest {
                 .andExpect(jsonPath("$.user.location").value(TestConstants.LOCATION))
                 .andExpect(jsonPath("$.user.about").value(TestConstants.ABOUT))
                 .andExpect(jsonPath("$.user.website").value(TestConstants.WEBSITE))
-                .andExpect(jsonPath("$.user.countryCode").value(TestConstants.COUNTRY_CODE))
-                .andExpect(jsonPath("$.user.country").value(TestConstants.COUNTRY))
-                .andExpect(jsonPath("$.user.phoneCode").value(TestConstants.PHONE_CODE))
+                .andExpect(jsonPath("$.user.countryCode").value(TestConstants.COUNTRY))
                 .andExpect(jsonPath("$.user.phone").value(TestConstants.PHONE))
+                .andExpect(jsonPath("$.user.country").value(TestConstants.COUNTRY))
                 .andExpect(jsonPath("$.user.gender").value(TestConstants.GENDER))
                 .andExpect(jsonPath("$.user.birthday").value(TestConstants.BIRTHDAY))
                 .andExpect(jsonPath("$.user.registrationDate").value(TestConstants.REGISTRATION_DATE))
@@ -137,14 +136,14 @@ public class UserSettingsControllerTest {
     @DisplayName("[200] PUT /ui/v1/settings/update/phone - Update phone")
     public void updatePhone() throws Exception {
         SettingsRequest request = new SettingsRequest();
-        request.setPhoneCode("+44");
+        request.setCountryCode("UK");
         request.setPhone(123456789L);
         mockMvc.perform(put(UI_V1_USER_SETTINGS_UPDATE + PHONE)
                         .content(mapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .header(AUTH_USER_ID_HEADER, TestConstants.USER_ID))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.phoneCode").value("+44"))
+                .andExpect(jsonPath("$.countryCode").value("UK"))
                 .andExpect(jsonPath("$.phone").value(123456789L));
     }
 
@@ -152,7 +151,7 @@ public class UserSettingsControllerTest {
     @DisplayName("[400] PUT /ui/v1/settings/update/phone - Should phone number length lower than 6 digits")
     public void updatePhone_ShouldPhoneNumberLengthLowerThan6Digits() throws Exception {
         SettingsRequest request = new SettingsRequest();
-        request.setPhoneCode("+44");
+        request.setCountryCode("UK");
         request.setPhone(123L);
         mockMvc.perform(put(UI_V1_USER_SETTINGS_UPDATE + PHONE)
                         .content(mapper.writeValueAsString(request))
@@ -166,7 +165,7 @@ public class UserSettingsControllerTest {
     @DisplayName("[400] PUT /ui/v1/settings/update/phone - Should phone number length more than 10 digits")
     public void updatePhone_ShouldPhoneNumberLengthMoreThan10Digits() throws Exception {
         SettingsRequest request = new SettingsRequest();
-        request.setPhoneCode("+44");
+        request.setCountryCode("UK");
         request.setPhone(12345678900L);
         mockMvc.perform(put(UI_V1_USER_SETTINGS_UPDATE + PHONE)
                         .content(mapper.writeValueAsString(request))
@@ -180,13 +179,13 @@ public class UserSettingsControllerTest {
     @DisplayName("[200] PUT /ui/v1/settings/update/country - Update country")
     public void updateCountry() throws Exception {
         SettingsRequest request = new SettingsRequest();
-        request.setCountry("United Kingdom");
+        request.setCountry("UK");
         mockMvc.perform(put(UI_V1_USER_SETTINGS_UPDATE + COUNTRY)
                         .content(mapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .header(AUTH_USER_ID_HEADER, TestConstants.USER_ID))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", is("United Kingdom")));
+                .andExpect(jsonPath("$", is("UK")));
     }
 
     @Test
