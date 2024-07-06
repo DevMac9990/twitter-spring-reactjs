@@ -7,8 +7,8 @@ spring:
         gateway:
             globalcors:
                 corsConfigurations:
-                    '[/ui/v1/**]':
-                        allowedOrigins: "http://localhost:3000"
+                    '[/**]':
+                        allowedOrigins: "*"
                         exposedHeaders: "page-total-count"
                         allowedHeaders: "*"
                         allowedMethods:
