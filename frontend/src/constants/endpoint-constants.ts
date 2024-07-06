@@ -1,4 +1,4 @@
-export const HOST = "http://localhost:8000";
+export const HOST = "http://18.140.196.115:8000";
 export const UI_V1 = `${HOST}/ui/v1`;
 export const WS_URL = `${HOST}/websocket`;
 export const UI_V1_IMAGE_UPLOAD = `${UI_V1}/image/upload`;
