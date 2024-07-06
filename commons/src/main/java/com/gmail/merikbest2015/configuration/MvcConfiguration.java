@@ -14,8 +14,8 @@ import static com.gmail.merikbest2015.constants.PathConstants.UI_V1;
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
 
-    @Value("${hostname:http://localhost:3000}")
-    private String hostname;
+//    @Value("${hostname:*}")
+//    private String hostname;
 
     @Bean
     @LoadBalanced
@@ -26,7 +26,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping(UI_V1 + "/**")
-                .allowedOrigins(hostname)
+                .allowedOrigins("*")
                 .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
                 .exposedHeaders(PAGE_TOTAL_COUNT)
                 .allowedHeaders("*");

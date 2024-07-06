@@ -7,7 +7,7 @@ spring:
         gateway:
             globalcors:
                 corsConfigurations:
-                    '[/**]':
+                    '[/ui/v1/**]':
                         allowedOrigins: "*"
                         exposedHeaders: "page-total-count"
                         allowedHeaders: "*"
