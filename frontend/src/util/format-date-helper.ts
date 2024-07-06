@@ -1,4 +1,4 @@
-import format from "date-fns/format";
+import {format,formatDistance,subDays} from "date-fns";
 import isYesterday from "date-fns/isYesterday";
 import isMonday from "date-fns/isMonday";
 import isTuesday from "date-fns/isTuesday";
@@ -15,8 +15,8 @@ import differenceInMinutes from "date-fns/differenceInMinutes";
 import { PollResponse } from "../types/tweet";
 import { HOUR_MINUTE_AMPM } from "../constants/common-constants";
 
-export const formatDate = (date: Date): string => {
-    return format(date, "MMM d");
+export const formatDate = (date: Date ): string => {
+    return formatDistance( date, new Date(),{addSuffix: true});
 };
 
 export const formatScheduleDate = (date: Date): string => {

@@ -6,7 +6,8 @@ export const useTweetTextStyles = makeStyles((theme) => ({
             display: "block",
             width: 490,
             color: "inherit",
-            textDecoration: "none"
+            textDecoration: "none",
+            height: "auto",
         },
         "& #hashtag": {
             color: theme.palette.primary.main

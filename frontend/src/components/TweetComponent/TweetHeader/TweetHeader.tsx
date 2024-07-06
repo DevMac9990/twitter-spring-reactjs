@@ -18,38 +18,33 @@ interface TweetHeaderProps {
     isPrivateProfile?: boolean;
 }
 
-const TweetHeader: FC<TweetHeaderProps> = memo((
-    {
-        userId,
-        fullName,
-        username,
-        isPrivateProfile,
-        dateTime
-    }
-): ReactElement => {
-    const classes = useTweetHeaderStyles();
-    const { visiblePopperWindow, handleHoverPopper, handleLeavePopper } = useHoverItem(fetchUserDetail);
+const TweetHeader: FC<TweetHeaderProps> = memo(
+    ({ userId, fullName, username, isPrivateProfile, dateTime }): ReactElement => {
+        const classes = useTweetHeaderStyles();
+        const { visiblePopperWindow, handleHoverPopper, handleLeavePopper } = useHoverItem(fetchUserDetail);
 
-    return (
-        <LinkWrapper path={`${PROFILE}/${userId}`} visiblePopperWindow={visiblePopperWindow}>
-            <span
-                onMouseEnter={() => handleHoverPopper({ userId: userId! } as HoverItemDetail)}
-                onMouseLeave={handleLeavePopper}
-            >
-                <Typography variant={"h6"} component={"span"}>
-                    {fullName}
-                </Typography>
-                {isPrivateProfile && <span className={classes.lockIcon}>{LockIcon}</span>}&nbsp;
-                <Typography variant={"subtitle1"} component={"span"}>
-                    @{username}{" · "}
-                </Typography>
-                <Typography variant={"subtitle1"} component={"span"}>
-                    {formatDate(new Date(dateTime!))}
-                </Typography>
-                <PopperUserWindow visible={visiblePopperWindow} isTweetComponent />
-            </span>
-        </LinkWrapper>
-    );
-});
+        return (
+            <LinkWrapper path={`${PROFILE}/${userId}`} visiblePopperWindow={visiblePopperWindow}>
+                <span
+                    onMouseEnter={() => handleHoverPopper({ userId: userId! } as HoverItemDetail)}
+                    onMouseLeave={handleLeavePopper}
+                >
+                    <Typography variant={"h6"} component={"span"}>
+                        {fullName}
+                    </Typography>
+                    {isPrivateProfile && <span className={classes.lockIcon}>{LockIcon}</span>}&nbsp;
+                    <Typography variant={"subtitle1"} component={"span"}>
+                        @{username}
+                        {" · "}
+                    </Typography>
+                    <Typography variant={"subtitle1"} component={"span"}>
+                        {formatDate(new Date(dateTime!))}
+                    </Typography>
+                    <PopperUserWindow visible={visiblePopperWindow} isTweetComponent />
+                </span>
+            </LinkWrapper>
+        );
+    }
+);
 
 export default TweetHeader;

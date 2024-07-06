@@ -32,8 +32,8 @@ export const useGlobalStyles = makeStyles<Theme, UseGlobalStylesProps>((theme) =
         marginLeft: 15
     },
     avatar: {
-        width: "46px !important",
-        height: "46px !important"
+        width: "40px !important",
+        height: "40px !important"
     },
     link: {
         color: theme.palette.text.primary,
@@ -167,9 +167,12 @@ export const useGlobalStyles = makeStyles<Theme, UseGlobalStylesProps>((theme) =
         }
     },
     dialogContent: {
-        height: props => props.dialogContentHeight ?? 550,
+        height: (props) => props.dialogContentHeight ?? 550,
         width: 598,
         padding: 0,
         overflowX: "hidden"
+    },
+    linkhei: {
+        lineHeight: "40px"
     }
 }));

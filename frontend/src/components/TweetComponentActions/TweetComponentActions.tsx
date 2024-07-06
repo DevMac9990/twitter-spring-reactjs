@@ -127,7 +127,7 @@ const TweetComponentActions: FC<TweetComponentActionsProps> = memo(({ tweetId, i
                                 <Spinner paddingTop={95} />
                             ) : (
                                 <List>
-                                    {(myProfileId === tweetUserId) ? (
+                                    {myProfileId === tweetUserId ? (
                                         <>
                                             <DeleteTweetButton
                                                 tweetId={tweetId}

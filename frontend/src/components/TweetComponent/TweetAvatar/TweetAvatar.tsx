@@ -14,7 +14,7 @@ const TweetAvatar: FC<TweetAvatarProps> = memo(({ src, userId }): ReactElement =
     const globalClasses = useGlobalStyles({});
 
     return (
-        <Link to={`${PROFILE}/${userId}`}>
+        <Link to={`${PROFILE}/${userId}`} className={globalClasses.linkhei}>
             <Avatar className={globalClasses.avatar} src={src} alt={`avatar ${userId}`} />
         </Link>
     );
