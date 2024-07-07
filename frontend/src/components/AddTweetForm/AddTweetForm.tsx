@@ -67,21 +67,19 @@ export interface ImageObj {
     file: File;
 }
 
-const AddTweetForm: FC<AddTweetFormProps> = (
-    {
-        unsentTweet,
-        quoteTweet,
-        tweetList,
-        maxRows,
-        minRows,
-        tweetId,
-        title,
-        buttonName,
-        addressedUsername,
-        addressedId,
-        onCloseModal
-    }
-): ReactElement => {
+const AddTweetForm: FC<AddTweetFormProps> = ({
+    unsentTweet,
+    quoteTweet,
+    tweetList,
+    maxRows,
+    minRows,
+    tweetId,
+    title,
+    buttonName,
+    addressedUsername,
+    addressedId,
+    onCloseModal
+}): ReactElement => {
     const classes = useAddTweetFormStyles();
     const dispatch = useDispatch();
     const params = useParams<{ userId: string }>();
@@ -111,11 +109,12 @@ const AddTweetForm: FC<AddTweetFormProps> = (
 
     const handleClickAddTweet = async (): Promise<void> => {
         const tweet = await tweetPreProcessing();
+        console.log("visiblePoll", unsentTweet);
 
         if (visiblePoll) {
             const { day, hour, minute, choice1, choice2, choice3, choice4 } = pollData;
-            const pollDateTime = (day * 1440) + (hour * 60) + minute;
-            const choices = [choice1, choice2, choice3, choice4].filter(item => item);
+            const pollDateTime = day * 1440 + hour * 60 + minute;
+            const choices = [choice1, choice2, choice3, choice4].filter((item) => item);
             dispatch(addPoll({ ...tweet, pollDateTime, choices }));
         } else if (scheduledDate !== null && unsentTweet === undefined) {
             dispatch(addScheduledTweet({ ...tweet, scheduledDate }));
@@ -125,9 +124,9 @@ const AddTweetForm: FC<AddTweetFormProps> = (
         } else {
             dispatch(addTweet(tweet));
         }
-        tweetPostProcessing(scheduledDate
-            ? `Your Tweet will be sent on ${formatScheduleDate(scheduledDate)}`
-            : "Your Tweet was sent.");
+        tweetPostProcessing(
+            scheduledDate ? `Your Tweet will be sent on ${formatScheduleDate(scheduledDate)}` : "Your Tweet was sent."
+        );
     };
 
     const handleClickQuoteTweet = async (): Promise<void> => {
@@ -138,13 +137,15 @@ const AddTweetForm: FC<AddTweetFormProps> = (
 
     const handleClickReplyTweet = async (): Promise<void> => {
         const tweet = await tweetPreProcessing();
-        dispatch(fetchReplyTweet({
-            ...tweet,
-            tweetId: tweetId!,
-            userId: params.userId,
-            addressedUsername: addressedUsername!,
-            addressedId: addressedId!
-        }));
+        dispatch(
+            fetchReplyTweet({
+                ...tweet,
+                tweetId: tweetId!,
+                userId: params.userId,
+                addressedUsername: addressedUsername!,
+                addressedId: addressedId!
+            })
+        );
         tweetPostProcessing();
     };
 
@@ -211,14 +212,18 @@ const AddTweetForm: FC<AddTweetFormProps> = (
                 <div className={classes.footerAddForm}>
                     <TextCountProgress text={text} />
                     <Button
-                        onClick={(buttonName === "Reply") ? handleClickReplyTweet :
-                            (quoteTweet !== undefined ? handleClickQuoteTweet : handleClickAddTweet)}
+                        onClick={
+                            buttonName === "Reply"
+                                ? handleClickReplyTweet
+                                : quoteTweet !== undefined
+                                ? handleClickQuoteTweet
+                                : handleClickAddTweet
+                        }
                         disabled={
-                            visiblePoll ? (
-                                !pollData.choice1 || !pollData.choice2 || !text || text.length >= MAX_TEXT_LENGTH
-                            ) : (
-                                !gif && (!text || text.length >= MAX_TEXT_LENGTH)
-                            )}
+                            visiblePoll
+                                ? !pollData.choice1 || !pollData.choice2 || !text || text.length >= MAX_TEXT_LENGTH
+                                : !gif && (!text || text.length >= MAX_TEXT_LENGTH)
+                        }
                         color="primary"
                         variant="contained"
                     >

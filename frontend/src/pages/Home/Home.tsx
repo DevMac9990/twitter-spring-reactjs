@@ -58,7 +58,7 @@ const Home: FC = (): ReactElement => {
         } else {
             dispatch(fetchTweets(page));
         }
-        setPage(prevState => prevState + 1);
+        setPage((prevState) => prevState + 1);
     };
 
     const handleLatestTweets = (): void => {
@@ -75,7 +75,7 @@ const Home: FC = (): ReactElement => {
 
     const handleSwitchTweets = (condition: boolean): void => {
         setSwitchTweets(condition);
-        setPage(prevState => prevState + 1);
+        setPage((prevState) => prevState + 1);
     };
 
     return (
@@ -88,9 +88,7 @@ const Home: FC = (): ReactElement => {
         >
             <Paper className={globalClasses.pageContainer} variant="outlined">
                 <Paper className={classnames(globalClasses.pageHeader, classes.header)} variant="outlined">
-                    <Typography variant="h5">
-                        Home
-                    </Typography>
+                    <Typography variant="h5">Home</Typography>
                     <TopTweetActions
                         switchTweets={switchTweets}
                         handleLatestTweets={handleLatestTweets}
@@ -105,7 +103,9 @@ const Home: FC = (): ReactElement => {
                     <Welcome />
                 ) : (
                     <>
-                        {tweets.map((tweet) => <TweetComponent key={tweet.id} tweet={tweet} />)}
+                        {tweets.map((tweet) => (
+                            <TweetComponent key={tweet.id} tweet={tweet} />
+                        ))}
                         {isLoading && <Spinner />}
                     </>
                 )}

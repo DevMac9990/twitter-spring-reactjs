@@ -7,7 +7,7 @@ export const useTweetTextStyles = makeStyles((theme) => ({
             width: 490,
             color: "inherit",
             textDecoration: "none",
-            height: "auto",
+            height: "auto !important",
         },
         "& #hashtag": {
             color: theme.palette.primary.main
@@ -18,5 +18,6 @@ export const useTweetTextStyles = makeStyles((theme) => ({
         "& #link": {
             color: theme.palette.primary.main
         }
-    }
+    },
+    
 }));

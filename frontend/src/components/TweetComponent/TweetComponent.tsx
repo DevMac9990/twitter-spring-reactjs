@@ -70,6 +70,7 @@ const TweetComponent: FC<TweetComponentProps> = memo(({ tweet, activeTab, isTwee
                                 taggedImageUsers={tweet?.taggedImageUsers}
                             />
                         )}
+                        231
                         {tweet?.gifImage && <GifImage tweetId={tweet?.id} gifImage={tweet?.gifImage} withLink />}
                         {tweet?.poll && <VoteComponent tweetId={tweet?.id} poll={tweet?.poll} />}
                         {tweet?.author.isFollower && tweet?.replyType === ReplyType.FOLLOW && (
