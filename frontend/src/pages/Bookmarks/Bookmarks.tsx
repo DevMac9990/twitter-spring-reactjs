@@ -15,7 +15,7 @@ import BookmarksHeader from "./BookmarksHeader/BookmarksHeader";
 const Bookmarks: FC = (): ReactElement => {
     const globalClasses = useGlobalStyles({});
     const dispatch = useDispatch();
-    const tweets = useSelector(selectTweetsItems);
+    const  tweets= useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
     const pagesCount = useSelector(selectPagesCount);
 
@@ -47,7 +47,7 @@ const Bookmarks: FC = (): ReactElement => {
                             />
                         ) : (
                             <>
-                                {tweets.map((tweet) => <TweetComponent key={tweet.id} tweet={tweet} />)}
+                                {tweets.map((tweet) => <TweetComponent key={tweet.id} tweet={tweet}/>)}
                                 {isLoading && <Spinner />}
                             </>
                         )

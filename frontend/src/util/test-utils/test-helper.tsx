@@ -273,7 +273,7 @@ export const createMockRootState = (loadingStatus = LoadingStatus.LOADING): Root
             item: mockUserDetailResponse,
             loadingState: loadingStatus
         },
-        userProfile: {
+        user: {
             user: createMockMyProfile(),
             images: mockProfileImages,
             imagesLoadingState: loadingStatus,

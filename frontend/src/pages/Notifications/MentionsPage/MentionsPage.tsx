@@ -12,7 +12,7 @@ import { resetMentions } from "../../../store/ducks/user/actionCreators";
 
 const MentionsPage: FC = (): ReactElement => {
     const dispatch = useDispatch();
-    const tweets = useSelector(selectTweetsItems);
+    const  tweets = useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
     const pagesCount = useSelector(selectPagesCount);
 

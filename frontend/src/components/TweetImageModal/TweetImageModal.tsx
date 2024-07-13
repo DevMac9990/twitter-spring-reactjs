@@ -53,7 +53,6 @@ const TweetImageModal = (): ReactElement | null => {
     const history = useHistory();
     const [visibleTweetImageModalWindow, setVisibleTweetImageModalWindow] = useState<boolean>(false);
     const image = images?.[0].src;
-
     useEffect(() => {
         dispatch(fetchTweetData(parseInt(params.id)));
         setVisibleTweetImageModalWindow(true);

@@ -14,7 +14,11 @@ import {
     resetTweets,
     setTweetsLoadingState
 } from "../../store/ducks/tweets/actionCreators";
-import { selectIsTweetsLoading, selectPagesCount, selectTweetsItems } from "../../store/ducks/tweets/selectors";
+import {
+    selectIsTweetsLoading,
+    selectPagesCount,
+    selectTweetsItems
+} from "../../store/ducks/tweets/selectors";
 import { fetchUserData } from "../../store/ducks/user/actionCreators";
 import { selectUserDataIsProfileStarted } from "../../store/ducks/user/selectors";
 import Welcome from "../../components/Welcome/Welcome";
@@ -104,7 +108,7 @@ const Home: FC = (): ReactElement => {
                 ) : (
                     <>
                         {tweets.map((tweet) => (
-                            <TweetComponent key={tweet.id} tweet={tweet} />
+                            <TweetComponent key={tweet.id} tweet={tweet}  />
                         ))}
                         {isLoading && <Spinner />}
                     </>

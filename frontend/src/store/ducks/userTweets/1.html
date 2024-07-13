@@ -1,0 +1,44 @@
+<html>
+
+
+<script>
+
+    let items = [
+        {id: 1, quote: {id: 5}},
+        {id: 5},
+        {id: 5},
+        {id: 7, quote: {id: 5}},
+        {id: 2, quote: {id: 8}},
+        {id: 8}
+    ];
+
+    // 找到最后一个包含 quote 属性的对象的索引
+    let lastQuoteIndex = -1;
+    items.forEach((item, index) => {
+        if (item.quote && item.quote.id) {
+            lastQuoteIndex = index;
+        }
+    });
+
+    // 创建一个新数组，并插入 isF: true 到最后一个包含 quote 属性的对象中
+    let updatedItems = items.map((item, index) => {
+        if (index === lastQuoteIndex) {
+            return {...item, isF: true};
+        }
+        return item;
+    });
+
+    // 创建一个集合来记录所有被引用的 id
+    let referencedIds = new Set();
+    items.forEach(item => {
+        if (item.quote && item.quote.id) {
+            referencedIds.add(item.quote.id);
+        }
+    });
+
+    // 过滤掉没有被引用的项
+    let filteredItems = updatedItems.filter(item => !referencedIds.has(item.id) || (item.id in lastQuoteIndex && item.isF));
+
+    console.log(filteredItems);
+</script>
+</html>

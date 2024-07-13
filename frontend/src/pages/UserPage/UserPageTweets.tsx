@@ -15,6 +15,7 @@ import {
 import { selectUserDataId } from "../../store/ducks/user/selectors";
 import { selectUserProfileId, selectUserProfileUsername } from "../../store/ducks/userProfile/selectors";
 import { useModalWindow } from "../../hook/useModalWindow";
+import { TweetResponse } from "../../types/tweet";
 
 interface UserPageTweetsProps {
     userTweetsActiveTab: number;
@@ -27,7 +28,7 @@ const UserPageTweets: FC<UserPageTweetsProps> = memo(({ userTweetsActiveTab, pag
     const myProfileId = useSelector(selectUserDataId);
     const userProfileId = useSelector(selectUserProfileId);
     const username = useSelector(selectUserProfileUsername);
-    const tweets = useSelector(selectUserTweetsItems);
+    const tweets  = useSelector(selectUserTweetsItems);
     const isTweetsLoading = useSelector(selectIsUserTweetsLoading);
     const pagesCount = useSelector(selectPagesCount);
     const { visibleModalWindow, onOpenModalWindow, onCloseModalWindow } = useModalWindow();
@@ -134,8 +135,9 @@ const UserPageTweets: FC<UserPageTweetsProps> = memo(({ userTweetsActiveTab, pag
         } else {
             return (
                 <>
-                    {tweets?.map((tweet) => (
-                        <TweetComponent key={tweet.id} tweet={tweet} activeTab={userTweetsActiveTab} />
+                    {tweets?.map((tweet,i) => (
+                        // tab content
+                        <TweetComponent key={tweet?.id} tweet={tweet} activeTab={userTweetsActiveTab} />
                     ))}
                     {isTweetsLoading && <Spinner />}
                 </>

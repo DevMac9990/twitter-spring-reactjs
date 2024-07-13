@@ -36,6 +36,7 @@ export interface TweetResponse {
     isTweetDeleted: boolean;
     isTweetBookmarked: boolean;
     retweetsUserIds?: number[];
+    isFalse?:boolean
 }
 
 export interface TweetAdditionalInfoResponse {
