@@ -21,9 +21,9 @@ export interface TweetResponse {
     images: Image[];
     imageDescription: string;
     taggedImageUsers: TaggedUserResponse[];
-    quoteTweet: QuoteTweetResponse;
-    retweet: TweetResponse;
-    tweetList: TweetListResponse;
+    quoteTweet?: QuoteTweetResponse;
+    retweet?: TweetResponse;
+    tweetList?: TweetListResponse;
     poll: PollResponse;
     retweetsCount: number;
     likesCount: number;
@@ -36,6 +36,7 @@ export interface TweetResponse {
     isTweetDeleted: boolean;
     isTweetBookmarked: boolean;
     retweetsUserIds?: number[];
+    items?:any[]
 }
 
 export interface TweetAdditionalInfoResponse {
