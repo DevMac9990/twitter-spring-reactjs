@@ -71,8 +71,9 @@ export const setImages = (payload: ImageObj[]): SetImagesActionInterface => ({
     payload
 });
 
-export const removeImages = (): RemoveImagesActionInterface => ({
-    type: AddTweetFormTypes.REMOVE_IMAGES
+export const removeImages = (payload:ImageObj[]): RemoveImagesActionInterface => ({
+    type: AddTweetFormTypes.REMOVE_IMAGES,
+    payload
 });
 
 export const setSelectedUser = (payload: UserResponse): SetSelectedUserActionInterface => ({

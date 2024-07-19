@@ -12,6 +12,7 @@ interface TweetImageProps {
     imageSrc?: string;
     imageDescription?: string;
     taggedImageUsers?: TaggedUserResponse[];
+    lengthImag?:number
 }
 
 const TweetImage: FC<TweetImageProps> = memo((
@@ -19,17 +20,22 @@ const TweetImage: FC<TweetImageProps> = memo((
         tweetId,
         imageSrc,
         imageDescription,
-        taggedImageUsers
+        taggedImageUsers,
+        lengthImag,
     }
 ): ReactElement => {
     const classes = useTweetImageStyles();
     const location = useLocation();
     const isModal = location.pathname.includes(MODAL);
-
+    console.log("TweetImage", lengthImag);
     return (
-        <div id={"tweetImage"} className={classes.image}>
+        <div id={"tweetImage"} className={classes.image} style={{
+            width:lengthImag == 1 ? "100%": "50%"
+        }}  >
             <Link to={{ pathname: `${MODAL}/${tweetId}`, state: { background: location } }}>
-                <img className={isModal ? "small" : ""} src={imageSrc} alt={imageSrc} />
+                <img className={isModal ? "small" : ""} src={imageSrc} alt={imageSrc} style={{
+                    width: "100%",
+                }}/>
             </Link>
             {imageDescription && <ImageDescription imageDescription={imageDescription} />}
             {(taggedImageUsers && taggedImageUsers.length !== 0) &&

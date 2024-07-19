@@ -76,6 +76,7 @@ export interface SetImagesActionInterface extends Action<AddTweetFormTypes> {
 
 export interface RemoveImagesActionInterface extends Action<AddTweetFormTypes> {
     type: AddTweetFormTypes.REMOVE_IMAGES;
+    payload: ImageObj[]
 }
 
 export interface SetSelectedUserActionInterface extends Action<AddTweetFormTypes> {

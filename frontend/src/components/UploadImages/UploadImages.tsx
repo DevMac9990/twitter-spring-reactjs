@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { MediaIcon } from "../../icons";
 import ActionIconButton from "../ActionIconButton/ActionIconButton";
 import { setImages } from "../../store/ducks/addTweetForm/actionCreators";
+import { fi } from "date-fns/locale";
 
 const UploadImages: FC = memo((): ReactElement => {
     const dispatch = useDispatch();
@@ -18,11 +19,28 @@ const UploadImages: FC = memo((): ReactElement => {
     const handleChangeFileInput = useCallback((event: Event): void => {
         if (event.target) {
             const target = event.target as HTMLInputElement;
-            const file = target.files?.[0];
-            if (file) {
-                const fileObj = new Blob([file]);
-                dispatch(setImages([{ src: URL.createObjectURL(fileObj), file }]));
+            console.log("target", target.files);
+            let fileImages = []
+            if(target.files && target.files.length > 0 ) {
+                for (const file of target.files) {
+                    const fileObj = new Blob([file]);
+                    console.log(fileObj,file)
+                    fileImages.push({
+                        src: URL.createObjectURL(fileObj),
+                        file: file,
+                    })
+
+                }
+                console.log(fileImages)
+                dispatch(setImages(fileImages))
             }
+            // const file = target.files?.[0];
+            // console.log("file",file)
+            // if (file) {
+            //     const fileObj = new Blob([file]);
+            //     console.log(fileObj,"000")
+            //     dispatch(setImages([{ src: URL.createObjectURL(fileObj), file }]));
+            // }
         }
     }, []);
 
@@ -40,7 +58,7 @@ const UploadImages: FC = memo((): ReactElement => {
     return (
         <>
             <ActionIconButton actionText={"Media"} icon={MediaIcon} onClick={handleClickImage} size={"medium"} />
-            <input ref={inputRef} type="file" id="upload-input" hidden />
+            <input ref={inputRef} type="file" id="upload-input"  multiple hidden />
         </>
     );
 });

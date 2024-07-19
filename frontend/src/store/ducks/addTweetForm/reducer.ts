@@ -72,9 +72,10 @@ export const addTweetFormReducer = produce((draft: Draft<AddTweetFormState>, act
             break;
 
         case AddTweetFormTypes.REMOVE_IMAGES:
-            draft.images = [];
+            draft.images = action.payload;
             draft.imageDescription = "";
             draft.selectedUsers = [];
+            // console.log("draft", draft.images);
             break;
 
         case AddTweetFormTypes.SET_SELECTED_USER:

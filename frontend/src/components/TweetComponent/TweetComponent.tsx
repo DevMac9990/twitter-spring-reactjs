@@ -249,13 +249,25 @@ const TweetComponent: FC<TweetComponentProps> = memo(({ tweet, activeTab, isTwee
                                  )}
                                  <TweetText text={tweet?.text} tweetId={tweet?.id} />
                                  {tweet?.images?.length !== 0 && (
-                                     <TweetImage
-                                         tweetId={tweet?.id}
-                                         imageSrc={tweet?.images?.[0].src}
-                                         imageDescription={tweet?.imageDescription}
-                                         taggedImageUsers={tweet?.taggedImageUsers}
-                                     />
-                                 )}
+                                     <div style={{
+                                         display: "flex",
+                                         flexWrap:"wrap"
+                                     }}>
+                                         {
+                                             tweet?.images?.map((image, index) => (
+                                                 <TweetImage
+                                                     tweetId={tweet?.id}
+                                                     imageSrc={image.src}
+                                                     imageDescription={tweet?.imageDescription}
+                                                     taggedImageUsers={tweet?.taggedImageUsers}
+                                                     key={index}
+                                                     lengthImag={tweet?.images.length}
+                                                 />
+
+                                             ))
+                                         }
+                                     </div>
+                                     )}
                                  {tweet?.gifImage &&
                                      <GifImage tweetId={tweet?.id} gifImage={tweet?.gifImage} withLink />}
                                  {tweet?.poll && <VoteComponent tweetId={tweet?.id} poll={tweet?.poll} />}

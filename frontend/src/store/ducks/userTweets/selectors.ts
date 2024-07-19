@@ -1,7 +1,6 @@
 import { RootState } from "../../store";
 import { UserTweetsState } from "./contracts/state";
 import { LinkCoverSize, LoadingStatus, ReplyType } from "../../../types/common";
-import { number } from "yup";
 
 export const selectUserTweetsState = (state: RootState): UserTweetsState => state.userTweets;
 export const selectUserTweetsLoadingStatus = (state: RootState): LoadingStatus => selectUserTweetsState(state).loadingState;
@@ -210,7 +209,7 @@ export const selectUserTweetsItems = (state: RootState) => {
             }
         ]
     })
-    // console.log("MapList",mapState)
+    console.log("MapList",mapState)
     return mapState
 };
 export const selectPagesCount = (state: RootState) => selectUserTweetsState(state).pagesCount;

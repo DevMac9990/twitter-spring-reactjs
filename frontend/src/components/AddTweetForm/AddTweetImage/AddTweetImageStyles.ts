@@ -12,6 +12,9 @@ export const useAddTweetImageStyles = makeStyles((theme) => ({
             borderColor: theme.palette.info.light
         }
     },
+    w_full:{
+        width:"100%"
+    },
     imageSmall: {
         position: "relative",
         "& img": {

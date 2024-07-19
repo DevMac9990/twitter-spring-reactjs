@@ -108,6 +108,7 @@ const AddTweetForm: FC<AddTweetFormProps> = ({
     }, [unsentTweet]);
 
     const handleClickAddTweet = async (): Promise<void> => {
+
         const tweet = await tweetPreProcessing();
         console.log("visiblePoll", unsentTweet);
 
@@ -130,6 +131,7 @@ const AddTweetForm: FC<AddTweetFormProps> = ({
     };
 
     const handleClickQuoteTweet = async (): Promise<void> => {
+
         const tweet = await tweetPreProcessing();
         dispatch(addQuoteTweet({ ...tweet, tweetId: quoteTweet!.id, userId: params.userId }));
         tweetPostProcessing();
